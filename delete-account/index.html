@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete your Opening Hand Account</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<h1>Delete your Opening Hand Account</h1>
+<p>You can also do this in the app: <em>⋮ → Account → Delete Account</em>.</p>
+<p>Deleting your Account removes it and everything in it from our servers: your email address, Username, Decks, Matches, Games and Tags. It happens <strong>7 days</strong> after you ask, and you can cancel until then. What's on your phone stays there. To keep a copy, use <em>Backup</em> in the app first. Your old Username stays reserved for 90 days. See the <a href="../privacy/">privacy policy</a>.</p>
+
+<section id="login" class="card">
+  <h2>Log in first</h2>
+  <form id="login-form">
+    <label for="name">Email or Username</label>
+    <input id="name" autocomplete="username" required>
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" required>
+    <p id="login-error" class="error" hidden></p>
+    <button id="login-button" type="submit">Log in</button>
+  </form>
+  <p class="muted">Forgot your password? Reset it in the app with <em>Log in → Forgot password?</em>. Can't log in at all? Email <a href="mailto:[CONTACT EMAIL]">[CONTACT EMAIL]</a> from your Account's email address and we'll delete it for you.</p>
+</section>
+
+<section id="account" class="card" hidden>
+  <p>Logged in as <strong id="username"></strong>.</p>
+  <div id="not-asked">
+    <p>Your Account will be deleted 7 days after you press this button.</p>
+    <button id="delete-button" class="danger">Delete my Account</button>
+  </div>
+  <div id="asked" hidden>
+    <p>Your Account will be deleted on <strong id="due"></strong>. Until then, the app keeps working as usual.</p>
+    <button id="cancel-button" class="secondary">Cancel deletion</button>
+  </div>
+  <p id="account-error" class="error" hidden></p>
+</section>
+
+<p class="muted">Opening Hand is an unofficial fan-made app. It is not affiliated with, endorsed by or sponsored by Nintendo, Creatures, GAME FREAK or The Pokémon Company.</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// The same public values as in the app (lib/src/account/supabase_config.dart).
+const SUPABASE_URL = 'https://zpmdfwklqmaphlzwyehj.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_q28Q5upC0rZ5Nd0CUqCa9g_USkutMP3';
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
+const $ = (id) => document.getElementById(id);
+
+function showError(where, message) {
+  $(where).textContent = message;
+  $(where).hidden = !message;
+}
+
+function formatDate(text) {
+  return new Date(text).toLocaleDateString(undefined, {
+    day: 'numeric', month: 'long', year: 'numeric',
+  });
+}
+
+async function logIn(name, password) {
+  if (name.includes('@')) {
+    const { error } = await client.auth.signInWithPassword({ email: name, password });
+    if (error) throw new Error(error.code === 'invalid_credentials'
+      ? 'Wrong email or password.' : error.message);
+    return;
+  }
+  // Username login goes through the server, as in the app.
+  const { data, error } = await client.functions.invoke('username-login', {
+    body: { username: name, password },
+  });
+  if (error) {
+    let message = 'Couldn\'t log in. Try again later.';
+    try { message = (await error.context.json()).error || message; } catch (_) {}
+    throw new Error(message);
+  }
+  const { error: sessionError } = await client.auth.refreshSession({
+    refresh_token: data.refresh_token,
+  });
+  if (sessionError) throw new Error(sessionError.message);
+}
+
+async function showProfile() {
+  const { data, error } = await client.rpc('my_profile');
+  if (error) throw new Error(error.message);
+  if (!data) throw new Error('This Account has no profile yet. Email us to delete it.');
+  $('username').textContent = data.username;
+  $('asked').hidden = !data.delete_after;
+  $('not-asked').hidden = !!data.delete_after;
+  if (data.delete_after) $('due').textContent = formatDate(data.delete_after);
+  $('login').hidden = true;
+  $('account').hidden = false;
+}
+
+async function busy(button, work, errorWhere) {
+  button.disabled = true;
+  showError(errorWhere, '');
+  try {
+    await work();
+  } catch (e) {
+    showError(errorWhere, e.message || String(e));
+  } finally {
+    button.disabled = false;
+  }
+}
+
+$('login-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  busy($('login-button'), async () => {
+    await logIn($('name').value.trim(), $('password').value);
+    $('password').value = '';
+    await showProfile();
+  }, 'login-error');
+});
+
+$('delete-button').addEventListener('click', () => {
+  if (!confirm('Delete your Opening Hand Account in 7 days?')) return;
+  busy($('delete-button'), async () => {
+    const { error } = await client.rpc('request_account_deletion');
+    if (error) throw new Error(error.message);
+    await showProfile();
+  }, 'account-error');
+});
+
+$('cancel-button').addEventListener('click', () => {
+  busy($('cancel-button'), async () => {
+    const { error } = await client.rpc('cancel_account_deletion');
+    if (error) throw new Error(error.message);
+    await showProfile();
+  }, 'account-error');
+});
+</script>
+</body>
+</html>
