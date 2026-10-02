@@ -22,7 +22,20 @@
     <p id="login-error" class="error" hidden></p>
     <button id="login-button" type="submit">Log in</button>
   </form>
+  <p class="muted">Made your Account with Google?</p>
+  <button id="google-button" class="secondary">Log in with Google</button>
   <p class="muted">Forgot your password? Reset it in the app with <em>Log in → Forgot password?</em>. Can't log in at all? Email <a href="mailto:[CONTACT EMAIL]">[CONTACT EMAIL]</a> from your Account's email address and we'll delete it for you.</p>
+</section>
+
+<section id="two-factor" class="card" hidden>
+  <h2>Two-factor login</h2>
+  <form id="two-factor-form">
+    <label for="code">6-digit code from your authenticator app, or a recovery code</label>
+    <input id="code" autocomplete="one-time-code" required>
+    <p class="muted">A recovery code works once, and turns two-factor login off.</p>
+    <p id="two-factor-error" class="error" hidden></p>
+    <button id="two-factor-button" type="submit">Continue</button>
+  </form>
 </section>
 
 <section id="account" class="card" hidden>
@@ -47,8 +60,15 @@
 const SUPABASE_URL = 'https://zpmdfwklqmaphlzwyehj.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_q28Q5upC0rZ5Nd0CUqCa9g_USkutMP3';
 
+// Google login leaves the page and comes back with the session in the
+// address (the implicit flow), which needs no storage.
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-  auth: { persistSession: false, autoRefreshToken: false },
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    flowType: 'implicit',
+    detectSessionInUrl: true,
+  },
 });
 const $ = (id) => document.getElementById(id);
 
@@ -85,15 +105,54 @@ async function logIn(name, password) {
   if (sessionError) throw new Error(sessionError.message);
 }
 
+// With two-factor login on, the server refuses everything until the code.
+async function needsCode() {
+  const { data, error } = await client.auth.mfa.getAuthenticatorAssuranceLevel();
+  if (error) throw new Error(error.message);
+  return data.currentLevel === 'aal1' && data.nextLevel === 'aal2';
+}
+
+async function afterLogIn() {
+  try {
+    const code = await needsCode();
+    $('login').hidden = true;
+    $('two-factor').hidden = !code;
+    if (!code) await showProfile();
+  } catch (e) {
+    // Back to the login, where the error shows.
+    $('login').hidden = false;
+    $('two-factor').hidden = true;
+    throw e;
+  }
+}
+
+async function giveCode(code) {
+  code = code.trim();
+  if (/^[0-9]{6}$/.test(code)) {
+    const { data: factors, error } = await client.auth.mfa.listFactors();
+    if (error) throw new Error(error.message);
+    const { error: verifyError } = await client.auth.mfa.challengeAndVerify({
+      factorId: factors.totp[0].id,
+      code,
+    });
+    if (verifyError) throw new Error('That code is wrong. Use the newest one from your authenticator app.');
+    return;
+  }
+  const { data: result, error } = await client.rpc('use_recovery_code', { code });
+  if (error) throw new Error(error.message);
+  if (result === 'wrong') throw new Error('That recovery code is wrong or already used.');
+  if (result === 'too_many') throw new Error('Too many tries. Wait 15 minutes.');
+  await client.auth.refreshSession();
+}
+
 async function showProfile() {
   const { data, error } = await client.rpc('my_profile');
   if (error) throw new Error(error.message);
-  if (!data) throw new Error('This Account has no profile yet. Email us to delete it.');
+  if (!data) throw new Error('This Account has no Username yet. Choose one in the app, or email us to delete it.');
   $('username').textContent = data.username;
   $('asked').hidden = !data.delete_after;
   $('not-asked').hidden = !!data.delete_after;
   if (data.delete_after) $('due').textContent = formatDate(data.delete_after);
-  $('login').hidden = true;
   $('account').hidden = false;
 }
 
@@ -114,9 +173,42 @@ $('login-form').addEventListener('submit', (event) => {
   busy($('login-button'), async () => {
     await logIn($('name').value.trim(), $('password').value);
     $('password').value = '';
-    await showProfile();
+    await afterLogIn();
   }, 'login-error');
 });
+
+$('two-factor-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  busy($('two-factor-button'), async () => {
+    await giveCode($('code').value);
+    $('code').value = '';
+    await afterLogIn();
+  }, 'two-factor-error');
+});
+
+$('google-button').addEventListener('click', () => {
+  busy($('google-button'), async () => {
+    const { error } = await client.auth.signInWithOAuth({
+      provider: 'google',
+      // Must be in Supabase's Redirect URLs, or Supabase sends players to
+      // its Site URL instead.
+      options: { redirectTo: location.origin + location.pathname },
+    });
+    if (error) throw new Error(error.message);
+  }, 'login-error');
+});
+
+// Back from Google: the session is in the address.
+(async () => {
+  const { data, error } = await client.auth.getSession();
+  if (error) showError('login-error', error.message);
+  if (!data.session) return;
+  try {
+    await afterLogIn();
+  } catch (e) {
+    showError('login-error', e.message || String(e));
+  }
+})();
 
 $('delete-button').addEventListener('click', () => {
   if (!confirm('Delete your Opening Hand Account in 7 days?')) return;
