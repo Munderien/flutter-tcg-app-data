@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Cancel the two-factor reset</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main>
+<h1>Cancel the two-factor reset</h1>
+<p>Someone logged in to your Opening Hand Account with your password and asked to remove two-factor login. If that wasn't you, cancel it here, then change your password in the app under <em>Account → Change password</em>.</p>
+
+<section class="card">
+  <div id="ask">
+    <p>Two-factor login stays on, and nothing else changes.</p>
+    <button id="cancel-button" class="danger">Cancel the reset</button>
+  </div>
+  <p id="done" hidden><strong>Cancelled.</strong> Two-factor login stays on. Change your password now: whoever asked knows it.</p>
+  <p id="gone" hidden>This link doesn't work any more: the reset was already cancelled, or it's done. If two-factor login was removed and that wasn't you, change your password and turn it on again in the app.</p>
+  <p id="error" class="error" hidden></p>
+</section>
+
+<p class="muted">Opening Hand is an unofficial fan-made app. It is not affiliated with, endorsed by or sponsored by Nintendo, Creatures, GAME FREAK or The Pokémon Company.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// The same public values as in the app (lib/src/account/supabase_config.dart).
+const SUPABASE_URL = 'https://zpmdfwklqmaphlzwyehj.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_q28Q5upC0rZ5Nd0CUqCa9g_USkutMP3';
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
+const $ = (id) => document.getElementById(id);
+
+// The token is after the #, so it never reaches a server's logs. It's only
+// used when pressing the button: email scanners open links by themselves.
+const token = location.hash.slice(1);
+if (!/^[0-9a-f]{48}$/.test(token)) {
+  $('ask').hidden = true;
+  $('gone').hidden = false;
+}
+
+$('cancel-button').addEventListener('click', async () => {
+  $('cancel-button').disabled = true;
+  $('error').hidden = true;
+  const { data, error } = await client.rpc('cancel_two_factor_reset_by_link', { token });
+  $('cancel-button').disabled = false;
+  if (error) {
+    $('error').textContent = error.message;
+    $('error').hidden = false;
+    return;
+  }
+  history.replaceState(null, '', location.pathname);
+  $('ask').hidden = true;
+  $(data ? 'done' : 'gone').hidden = false;
+});
+</script>
+</body>
+</html>
