@@ -5,10 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <title>Cancel the two-factor reset</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#11131A" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F5FA" media="(prefers-color-scheme: light)">
+<link rel="preload" href="/assets/fonts/rubik-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-next-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<main>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/">
+      <picture><source srcset="/assets/logo/opening-hand-horizontal.svg" media="(prefers-color-scheme: light)"><img src="/assets/logo/opening-hand-horizontal-dark.svg" alt="Opening Hand" width="1002" height="239"></picture>
+    </a>
+    <a class="jump" href="/#get">Get the app</a>
+  </header>
+
+<main class="doc">
 <h1>Cancel the two-factor reset</h1>
 <p>Someone logged in to your Opening Hand Account with your password and asked to remove two-factor login. If that wasn't you, cancel it here, then change your password in the app under <em>Account → Change password</em>.</p>
 
@@ -24,6 +39,16 @@
 
 <p class="muted">Opening Hand is an unofficial fan-made app. It is not affiliated with, endorsed by or sponsored by Nintendo, Creatures, GAME FREAK or The Pokémon Company.</p>
 </main>
+
+  <footer>
+    <nav class="links" aria-label="Site">
+      <a href="/privacy/">Privacy policy</a>
+      <a href="/delete-account/">Delete your Account</a>
+      <a href="mailto:contact@openinghand.app">contact@openinghand.app</a>
+    </nav>
+    <p>© 2026 Marijn Goedhart</p>
+  </footer>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 // The same public values as in the app (lib/src/account/supabase_config.dart).

@@ -2,19 +2,266 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Opening Hand</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Opening Hand: Pokémon TCG deck odds and match journal</title>
+<meta name="description" content="Opening Hand deals your Pokémon TCG deck thousands of times to show what should happen, and keeps a journal of what did. Free, no ads, Android.">
+<link rel="canonical" href="https://openinghand.app/">
+<meta name="theme-color" content="#11131A" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F5FA" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/rubik-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-next-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Opening Hand">
+<meta property="og:title" content="Opening Hand: Pokémon TCG deck odds and match journal">
+<meta property="og:description" content="Opening Hand deals your Pokémon TCG deck thousands of times to show what should happen, and keeps a journal of what did. Free, no ads, Android.">
+<meta property="og:url" content="https://openinghand.app/">
+<meta property="og:image" content="https://openinghand.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Opening Hand: your deck in theory, your deck in action.">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
-<main>
-<h1>Opening Hand</h1>
-<p>A Pokémon TCG deck simulator and match journal, so you can tell bad luck from a bad list.</p>
-<ul>
-<li><a href="privacy/">Privacy policy</a></li>
-<li><a href="delete-account/">Delete your Account</a></li>
-</ul>
-<p class="muted">Opening Hand is an unofficial fan-made app. It is not affiliated with, endorsed by or sponsored by Nintendo, Creatures, GAME FREAK or The Pokémon Company.</p>
-</main>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/">
+      <picture><source srcset="/assets/logo/opening-hand-horizontal.svg" media="(prefers-color-scheme: light)"><img src="/assets/logo/opening-hand-horizontal-dark.svg" alt="Opening Hand" width="1002" height="239"></picture>
+    </a>
+    <a class="jump" href="#get">Get the app</a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="h1">
+
+
+      <h1 id="h1" class="split">
+        <span class="t">Your deck <span class="l2">in <em>theory.</em></span></span>
+        <span class="a">Your deck <span class="l2">in <em>action.</em></span></span>
+      </h1>
+      <p class="lede">Opening Hand deals your deck thousands of times to show what should happen, and keeps a journal of what did.</p>
+
+      <div class="proof">
+        <p class="proof-label"><span><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg></span>Key card prized <span class="ex">· example deck</span></span></p>
+        <div class="split pairgrid">
+          <div class="cell t">
+            <p class="cell-num"><span class="side">Expected</span><span class="big num" data-count="10">10%</span><span class="how">of 20,000 dealt hands</span></p>
+            <div class="deal t" role="img" aria-label="60 dealt hands, 6 of them with the key card prized"><i></i><i></i><i></i><i></i><i class="on" style="--d:0"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="--d:1"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="--d:2"></i><i></i><i></i><i></i><i class="on" style="--d:3"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="--d:4"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="--d:5"></i><i></i></div>
+          </div>
+          <div class="cell a">
+            <p class="cell-num"><span class="side">Happened</span><span class="big num" data-count="23">23%</span><span class="how">in 11 of 48 Games</span></p>
+            <div class="deal a" role="img" aria-label="48 Games, 11 of them with the key card prized"><i></i><i class="on" style="--d:0"></i><i></i><i></i><i></i><i></i><i class="on" style="--d:1"></i><i></i><i></i><i></i><i></i><i class="on" style="--d:2"></i><i></i><i></i><i></i><i></i><i class="on" style="--d:3"></i><i></i><i></i><i></i><i></i><i class="on" style="--d:4"></i><i></i><i></i><i></i><i></i><i class="on" style="--d:5"></i><i></i><i></i><i></i><i></i><i class="on" style="--d:6"></i><i></i><i class="on" style="--d:7"></i><i></i><i></i><i class="on" style="--d:8"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="--d:9"></i><i></i><i></i><i class="on" style="--d:10"></i><i></i></div>
+          </div>
+        </div>
+        <p class="verdict">More often than the odds say. That's the shuffle, not your list.</p>
+      </div>
+
+      <div class="get hero-get">
+        <div class="fan" aria-hidden="true">
+        <svg viewBox="0 0 560 250">
+            <g transform="translate(280 262)">
+              <rect class="c3" x="-38" y="-236" width="76" height="106" rx="9" transform="rotate(-54)"/>
+              <rect class="c2" x="-38" y="-236" width="76" height="106" rx="9" transform="rotate(-36)"/>
+              <rect class="c1" x="-38" y="-236" width="76" height="106" rx="9" transform="rotate(-18)"/>
+              <rect class="c1" x="-38" y="-236" width="76" height="106" rx="9" transform="rotate(18)"/>
+              <rect class="c2" x="-38" y="-236" width="76" height="106" rx="9" transform="rotate(36)"/>
+              <rect class="c3" x="-38" y="-236" width="76" height="106" rx="9" transform="rotate(54)"/>
+              <rect class="c0" x="-38" y="-248" width="76" height="106" rx="9"/>
+              <path class="spark" d="M58,-252c2.3,10.5 2.3,10.5 12.8,12.8c-10.5,2.3 -10.5,2.3 -12.8,12.8c-2.3,-10.5 -2.3,-10.5 -12.8,-12.8c10.5,-2.3 10.5,-2.3 12.8,-12.8z"/>
+            </g>
+          </svg>
+      </div>
+        <p class="pill" role="note">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>
+          Coming soon to Google Play
+        </p>
+        <p class="terms"><b>Free</b> · No ads · Android · No account needed</p>
+      </div>
+    </section>
+
+    <div class="split bridge" aria-hidden="true"></div>
+
+    <section class="versions glow" aria-labelledby="h-versions">
+      <div class="intro">
+        <h2 id="h-versions">Bad luck, or a bad list?</h2>
+        <p>Same deck, two lists. Each version gets its own odds and its own Record, so you can see which one did the damage.</p>
+        <p class="deckline"><span class="badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg></span>Fire deck <span class="ex">· example</span></p>
+      </div>
+
+      <article class="reveal version" aria-labelledby="h-v1">
+        <div class="split bridge" aria-hidden="true" style="height:28px"></div>
+        <div class="vhead">
+          <h3 id="h-v1">Version 1 <span class="meta">14 Matches · 26 Games</span></h3>
+        </div>
+        <div class="split vgrid">
+          <div class="t">
+            <p class="colhead">In theory</p>
+            <ul class="rows">
+              <li><span class="k">Basic in opening hand</span><span class="v num">89%</span></li>
+              <li><span class="k">Draw Supporter by turn 1</span><span class="v num">76%</span></li>
+              <li><span class="k">Game Plan done by turn&nbsp;2</span><span class="v num">41%</span></li>
+            </ul>
+          </div>
+          <div class="a">
+            <p class="colhead">In action</p>
+            <div class="record"><span class="num">5–8–1</span><span class="wr"><b>36%</b> win rate</span></div>
+            <ul class="rows">
+              <li><span class="k">No Supporter on turn 1<small><span>7 of 26 Games</span><span class="x">expected 24%</span></small></span><span class="v num">27%</span></li>
+              <li><span class="k">Key card prized<small><span>6 of 26 Games</span><span class="x">expected 10%</span></small></span><span class="v num">23%</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="split bridge" aria-hidden="true" style="height:20px"></div>
+        <div class="vverdict"><p>Right on the odds. The list is the problem, not the luck.<span>A quarter of your hands start without a Supporter, and that's what the Games show too.</span></p></div>
+      </article>
+
+      <article class="reveal version" aria-labelledby="h-v2">
+        <div class="split bridge" aria-hidden="true" style="height:28px"></div>
+        <div class="vhead">
+          <h3 id="h-v2">Version 2 <span class="meta">12 Matches · 22 Games</span></h3>
+          <ul class="diff" aria-label="Cards that changed from version 1">
+            <li class="add"><b>+1</b> Draw Supporter</li>
+            <li class="add"><b>+1</b> Search Item</li>
+            <li class="cut"><b>−2</b> Item</li>
+          </ul>
+        </div>
+        <div class="split vgrid">
+          <div class="t">
+            <p class="colhead">In theory</p>
+            <ul class="rows">
+              <li><span class="k">Basic in opening hand</span><span class="v num">90%</span></li>
+              <li><span class="k">Draw Supporter by turn 1</span><span class="v num">87%</span></li>
+              <li><span class="k">Game Plan done by turn&nbsp;2</span><span class="v num">55%</span></li>
+            </ul>
+          </div>
+          <div class="a">
+            <p class="colhead">In action</p>
+            <div class="record"><span class="num">8–3–1</span><span class="wr"><b>67%</b> win rate</span></div>
+            <ul class="rows">
+              <li><span class="k">No Supporter on turn 1<small><span>3 of 22 Games</span><span class="x">expected 13%</span></small></span><span class="v num">14%</span></li>
+              <li><span class="k">Key card prized<small><span>5 of 22 Games</span><span class="x">expected 10%</span></small></span><span class="v num">23%</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="split bridge" aria-hidden="true" style="height:20px"></div>
+        <div class="vverdict"><p>Fewer dead starts, and more wins to show for it.<span>The prizes stayed unlucky in both versions. No list change fixes that.</span></p></div>
+      </article>
+
+      <div class="reveal compare">
+        <h3>Version 1 and 2, side by side</h3>
+        <div class="tablebox">
+          <table>
+            <caption>Example deck. Version Comparison in the app shows this for any two versions of a Deck.</caption>
+            <thead><tr><th scope="col"><span class="sr">Stat</span></th><th scope="col">v1</th><th scope="col">v2</th><th scope="col">Change</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><span class="side-tag t" aria-hidden="true"></span>Draw Supporter by turn 1</th><td class="num">76%</td><td class="num">87%</td><td class="num"><span class="up">+11</span></td></tr>
+              <tr><th scope="row"><span class="side-tag t" aria-hidden="true"></span>Game Plan done by turn 2</th><td class="num">41%</td><td class="num">55%</td><td class="num"><span class="up">+14</span></td></tr>
+              <tr class="act"><th scope="row"><span class="side-tag a" aria-hidden="true"></span>Win rate</th><td class="num">36%</td><td class="num">67%</td><td class="num"><span class="up">+31</span></td></tr>
+              <tr class="act"><th scope="row"><span class="side-tag a" aria-hidden="true"></span>Record</th><td class="num">5–8–1</td><td class="num">8–3–1</td><td class="num">–</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="what glow" aria-labelledby="h-what">
+      <div class="intro"><h2 id="h-what">What's in the app</h2></div>
+      <div class="split" style="margin-top:clamp(32px,5vw,48px)">
+        <div class="reveal t feat">
+          <picture class="ill"><source srcset="/assets/illustrations/empty-stats-light.svg" media="(prefers-color-scheme: light)"><img src="/assets/illustrations/empty-stats-dark.svg" alt="" width="240" height="160"></picture>
+          <h3>Know your odds.</h3>
+          <p>Paste a list and see how often you open with what you need: a Basic, your draw Supporter, your whole turn-one Game Plan, going first or second.</p>
+        </div>
+        <div class="reveal a feat">
+          <picture class="ill"><source srcset="/assets/illustrations/empty-journal-light.svg" media="(prefers-color-scheme: light)"><img src="/assets/illustrations/empty-journal-dark.svg" alt="" width="240" height="160"></picture>
+          <h3>Log every Match.</h3>
+          <p>Results in a few taps at the table, by Event and opponent, with win rates per Deck and per version of it.</p>
+        </div>
+      </div>
+      <div class="reveal joined">
+        <div class="card">
+          <h3><span class="t">Check</span> <span class="a">your luck.</span></h3>
+          <p>Luck Check compares what happened in your Games with what the odds said, so you know whether to change the list or just keep playing it.</p>
+        </div>
+      </div>
+      <p class="sync">Want it on two phones? Make an optional <b>Account</b> and your Decks and Matches sync. Without one, everything stays on your phone.</p>
+    </section>
+
+    <section class="screens glow" aria-labelledby="h-screens">
+      <div class="split bridge" aria-hidden="true"></div>
+      <figure class="reveal shot">
+        <div class="phone">
+          <div class="ph-top"><span class="badge sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg></span><span><b>Fire deck</b> · Version 1</span></div>
+          <p class="ph-title" id="h-screens">Luck Check</p>
+          <p class="ph-sub">26 Games</p>
+          <ul class="lcl">
+            <li><span class="lk">No Supporter on turn 1</span><span class="bars"><i class="e" style="--w:24%"></i><i class="h" style="--w:27%"></i></span><span class="lv num"><span class="ev">24%</span> <span class="hv">27%</span></span></li>
+            <li><span class="lk">Key card prized</span><span class="bars"><i class="e" style="--w:10%"></i><i class="h" style="--w:23%"></i></span><span class="lv num"><span class="ev">10%</span> <span class="hv">23%</span></span></li>
+            <li><span class="lk">Mulligan</span><span class="bars"><i class="e" style="--w:11%"></i><i class="h" style="--w:12%"></i></span><span class="lv num"><span class="ev">11%</span> <span class="hv">12%</span></span></li>
+            <li><span class="lk">No Energy on turn 1</span><span class="bars"><i class="e" style="--w:8%"></i><i class="h" style="--w:8%"></i></span><span class="lv num"><span class="ev">8%</span> <span class="hv">8%</span></span></li>
+          </ul>
+          <p class="ph-key"><span class="ke"></span>Expected <span class="kh"></span>Happened</p>
+          <p class="ph-verdict">Right on the odds. The list is the problem, not the luck.</p>
+        </div>
+        <figcaption>A sketch of Luck Check in the app, for the example deck. Real screenshots arrive with the store listing.</figcaption>
+      </figure>
+    </section>
+
+    <section class="faq glow" aria-labelledby="h-faq">
+      <div class="split bridge" aria-hidden="true"></div>
+      <h2 id="h-faq">Questions</h2>
+      <div class="reveal list">
+        <details><summary>Is it free?</summary><p>Yes, and there are no ads.</p></details>
+        <details><summary>Is it on iPhone?</summary><p>Not yet. Android comes first.</p></details>
+        <details><summary>Do I need an Account?</summary><p>No. Everything works without one. An Account only adds sync between phones and a backup in the cloud.</p></details>
+        <details><summary>What happens to my data?</summary><p>Without an Account, nothing leaves your phone. With one, read the <a href="/privacy/">privacy policy</a>.</p></details>
+        <details><summary>Which formats does it support?</summary><p>Standard, with cards up to the newest set we've added.</p></details>
+        <details><summary>Is this an official app?</summary><p>No. Opening Hand is an unofficial fan-made app, not affiliated with Nintendo, Creatures, GAME FREAK or The Pokémon Company.</p></details>
+      </div>
+    </section>
+
+    <section class="close glow" id="get" aria-labelledby="h-close">
+      <div class="sym reveal" aria-hidden="true"><img src="/assets/logo/opening-hand-symbol.svg" alt="" width="256" height="256"></div>
+      <h2 id="h-close"><span class="t">In theory.</span> <span class="a">In action.</span></h2>
+      <p class="line">Your deck, dealt thousands of times. Your Matches, logged in a few taps.</p>
+      <div class="get">
+        <p class="pill" role="note">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M12 7.5v7M9 11.5l3 3 3-3"/></svg>
+          Coming soon to Google Play
+        </p>
+        <p class="terms"><b>Free</b> · No ads · Android · No account needed</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <nav class="links" aria-label="Site">
+      <a href="/privacy/">Privacy policy</a>
+      <a href="/delete-account/">Delete your Account</a>
+      <a href="mailto:contact@openinghand.app">contact@openinghand.app</a>
+    </nav>
+    <p>Opening Hand is an unofficial fan-made app. It is not affiliated with, endorsed by or sponsored by Nintendo, Creatures, GAME FREAK or The Pokémon Company.</p>
+    <p>© 2026 Marijn Goedhart</p>
+  </footer>
+</div>
+
+<script>
+(() => {
+  if (!matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const end = +el.dataset.count, t0 = performance.now(), dur = 1500;
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+      el.textContent = Math.round(Math.max(1, end * e)) + '%';
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+})();
+</script>
 </body>
 </html>
