@@ -24,9 +24,9 @@
 
 <main class="doc">
 <h1>Opening Hand privacy policy</h1>
-<p class="muted">Last updated: 3 October 2026</p>
+<p class="muted">Last updated: 25 October 2026</p>
 
-<p>Opening Hand is a Pokémon TCG deck simulator and match journal for Android. This page says what data the app handles, where it goes, and what you can do about it. The short version: without an Account, everything stays on your phone. With an Account, your Decks, Matches and Tags are also stored online so they're safe and the same on every phone you use. There are no ads, no analytics and no tracking, and your data is never sold.</p>
+<p>Opening Hand is a Pokémon TCG deck simulator and match journal for Android. This page says what data the app handles, where it goes, and what you can do about it. The short version: without an Account, everything stays on your phone. With an Account, your Decks, Matches and Tags are also stored online so they're safe and the same on every phone you use, and you can have Friends and chat with them. There are no ads, no analytics and no tracking, and your data is never sold.</p>
 
 <h2>Who is responsible</h2>
 <p>Opening Hand is made by <strong>Marijn Goedhart</strong>, who is responsible for your data. Questions, requests and complaints: <a href="mailto:contact@openinghand.app">contact@openinghand.app</a>.</p>
@@ -49,24 +49,45 @@
 <li><strong>Your password</strong>, if you set one, stored only in scrambled form (hashed); nobody can read it, including us.</li>
 <li><strong>Two-factor login</strong>, if you turn it on: the key your authenticator app shares with us, needed to check its codes, and your recovery codes, stored only hashed.</li>
 <li><strong>What you log in the app</strong>: Decks and their lists, Matches, Games, Tags, Card Tags and your answers about unknown cards, so they sync between your phones.</li>
+<li><strong>Friends</strong>: who your Friends are, the Friend Requests you sent and received, who you blocked, and what you chose to show your Friends. See <a href="#friends-and-chats">Friends and Chats</a>.</li>
+<li><strong>Chats</strong>: the Messages and Decks you send and receive, which Messages each of you has read, and Messages you reported.</li>
+<li><strong>When you last had the app open</strong>, to show your Friends that you're online, unless you turn that off.</li>
+<li><strong>Your phone's address for notifications</strong> (a Firebase Cloud Messaging token), so we can tell you about new Messages, unless you turn them off.</li>
 <li><strong>Technical data</strong>: when you logged in and from which IP address, kept by our provider to keep logins secure and to stop people guessing passwords.</li>
 </ul>
 <p>If you <strong>sign in with Google</strong>, Google tells us your Google account's ID, email address, name and profile picture address. We use the ID and email to log you in; Supabase keeps the name and picture address with your login, but the app doesn't use or show them. Google learns that you signed in to Opening Hand; see <a href="https://policies.google.com/privacy">Google's privacy policy</a>. We don't get access to anything else in your Google account.</p>
-<p>We use this only to run your Account and sync your data. The legal basis is providing the service you asked for (GDPR article 6(1)(b)), and our legitimate interest in keeping it secure (article 6(1)(f)).</p>
+<p>We use this only to run your Account, sync your data and let you talk with your Friends. The legal basis is providing the service you asked for (GDPR article 6(1)(b)), and our legitimate interest in keeping it secure and safe, which includes looking at reported Messages (article 6(1)(f)).</p>
+
+<h2 id="friends-and-chats">Friends and Chats</h2>
+<ul>
+<li><strong>Finding you.</strong> Other players can find you only by typing your whole Username. They see nothing but your Username until you're Friends, and both of you have to agree to be Friends.</li>
+<li><strong>What Friends see.</strong> Only what you turn on under <em>What friends see</em>: your Deck lists, Deck stats and Recent Matches (all off at first), and whether you're online and have read their Messages (on at first; turned off, you don't see it of them either). Your notes, Events and Tags are never shown. You can hide a single Deck from Friends.</li>
+<li><strong>Messages.</strong> Chats are only between Friends. Your Messages, and the Decks you send, are stored on our server so they reach your Friend, and so your Chats are there on every phone. They are <strong>not end-to-end encrypted</strong>: they're encrypted on the way and stored securely, but the server can read them. To deliver them instantly, our provider's live delivery also keeps a copy for a few minutes. We don't look at Messages, except ones that are reported to us. A Sent Deck is a copy of the list, and of its Game Plan, stats and note if you add them; your Friend can save it as their own Deck.</li>
+<li><strong>Typing.</strong> While you're both in a Chat, your Friend sees when you're typing. This goes straight to their phone and isn't stored.</li>
+<li><strong>Reports.</strong> If someone reports one of your Messages, we keep a copy of it, with who sent and reported it and why, so we can look at it and act on it, for example by deleting an Account that harasses others. You're not told who reported it.</li>
+<li><strong>Blocking.</strong> When you block someone, they can't find you or send you Messages, their Requests don't reach you, and they aren't told.</li>
+</ul>
 
 <h2>Where it's stored</h2>
 <p>Account data is stored with <strong>Supabase</strong> in their data centre in <strong>Frankfurt, Germany</strong> (EU), which stores and processes it on our behalf. See <a href="https://supabase.com/privacy">Supabase's privacy policy</a>. </p>
 <p>Emails are sent by <strong>Resend</strong> (Resend, Inc., USA), from their servers in <strong>Ireland</strong> (EU). Resend receives the email address and the email itself, only to deliver it, and keeps delivery logs for a short time. Because Resend is a US company, the transfer is covered by the EU–US Data Privacy Framework and standard contractual clauses. See <a href="https://resend.com/legal/privacy-policy">Resend's privacy policy</a>.</p>
+<p>Notifications are delivered by <strong>Firebase Cloud Messaging</strong>, a service of Google (Google Ireland Ltd. and Google LLC, USA), on our behalf. To deliver a notification, Google receives your phone's notification address and the notification itself: your Friend's Username and the start of their Message. Google's Firebase SDK in the app also gives your phone an installation ID for this. The transfer to the USA is covered by the EU–US Data Privacy Framework and standard contractual clauses. See <a href="https://firebase.google.com/support/privacy">Firebase's privacy information</a>.</p>
 <p>Emails to <code>contact@openinghand.app</code> are forwarded by <strong>Cloudflare</strong> to our inbox, without being stored by Cloudflare.</p>
 
 <h2>How long we keep it</h2>
-<p>As long as you have an Account. When you delete your Account, it's deleted 7 days later, together with everything in it. You can cancel during those 7 days. Our provider may keep technical logs for a short time after that. Your old Username stays reserved for 90 days so nobody else can pretend to be you.</p>
+<p>As long as you have an Account. When you delete your Account, it's deleted 7 days later, together with everything in it, including your Friends and your Chats with them (for both of you). You can cancel during those 7 days. Our provider may keep technical logs for a short time after that. Your old Username stays reserved for 90 days so nobody else can pretend to be you.</p>
+<ul>
+<li><strong>Messages</strong> stay until the sender deletes them, or until one of you deletes their Account. A deleted Message is wiped from the server at once; only a reported copy stays (see Reports).</li>
+<li><strong>Reports</strong> are kept for 1 year, also when the Message or Account is deleted, so we can act on repeated harassment. Then they're deleted.</li>
+<li><strong>When you were last online</strong>: only the last time, and only while showing it is on. Turning it off deletes it.</li>
+<li><strong>Notifications</strong> waiting to be delivered are deleted after a day. Your phone's notification address is deleted when you log out on that phone, or when Firebase says it's no longer in use.</li>
+</ul>
 
 <h2>Your rights</h2>
 <ul>
-<li><strong>See and take your data</strong>: <em>Backup</em> in the app saves everything you logged to a file.</li>
+<li><strong>See and take your data</strong>: <em>Backup</em> in the app saves everything you logged to a file. Your Chats are in the app; for a copy of them, email us.</li>
 <li><strong>Correct it</strong>: change anything in the app; change your Username or password under <em>Account</em>.</li>
-<li><strong>Delete it</strong>: <em>Account → Delete Account</em> in the app, or on the <a href="../delete-account/">delete account page</a>, or by emailing us from your Account's email address.</li>
+<li><strong>Delete it</strong>: delete your own Messages by long-pressing them; turn off online status and notifications in the app; or <em>Account → Delete Account</em> in the app, or on the <a href="../delete-account/">delete account page</a>, or by emailing us from your Account's email address.</li>
 <li><strong>Object or ask questions</strong>: email <a href="mailto:contact@openinghand.app">contact@openinghand.app</a>. We answer within a month.</li>
 <li><strong>Complain</strong> to the data protection authority in your country.</li>
 </ul>
